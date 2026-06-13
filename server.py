@@ -11,12 +11,14 @@ def render_index_page():
 def emotion_analysis():
     text_to_analyze = request.args.get('textToAnalyze')
     emotions = emotion_detector(text_to_analyze)
+    dominant_emotion = emotions['dominant_emotion']
+    if dominant_emotion is None :
+        return "Invalid text! Please try again!."
     anger = emotions['anger']
     disgust = emotions['disgust']
     sadness = emotions['sadness']
     joy = emotions['joy']
     fear = emotions['fear']
-    dominant_emotion = emotions['dominant_emotion']
     return "For the given statement, the system response is 'anger': {}, 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}.".format(anger,disgust,fear,joy,sadness,dominant_emotion)
 
 
