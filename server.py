@@ -8,7 +8,7 @@ def render_index_page():
     return render_template('index.html')
 
 @app.route("/emotionDetector")
-def emotion_detector():
+def emotion_analysis():
     text_to_analyze = request.args.get('textToAnalyze')
     emotions = emotion_detector(text_to_analyze)
     anger = emotions['anger']
@@ -19,3 +19,7 @@ def emotion_detector():
     dominant_emotion = emotions['dominant_emotion']
     return "For the given statement, the system response is 'anger': {}, 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}.".format(anger,disgust,fear,joy,sadness,dominant_emotion)
 
+
+
+if __name__ == "__main__" : 
+    app.run(host="0.0.0.0", port=5001) 
